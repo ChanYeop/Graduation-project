@@ -1,0 +1,61 @@
+const int inA = 14;
+const int inB = 15;
+const int enpin = 5;
+
+const int inA2 = 16;
+const int inB2 = 17;
+const int enpin2 = 6;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(inA,OUTPUT);
+  pinMode(inB,OUTPUT);
+  pinMode(enpin, OUTPUT);
+
+  pinMode(inA2,OUTPUT);
+  pinMode(inB2,OUTPUT);
+  pinMode(enpin2, OUTPUT);
+
+  Serial.begin(9600);
+  
+  while(1){
+    if(Serial.available()){
+      break;
+    }
+  }
+}
+
+void loop() {
+  if(Serial.available()){
+    char income;
+    income = Serial.read();
+    if(income == 'a'){
+      digitalWrite(inA,LOW);
+      digitalWrite(inB,HIGH);
+      analogWrite(enpin,180);
+
+      digitalWrite(inA2,HIGH);
+      digitalWrite(inB2,LOW);
+      analogWrite(enpin2,200);
+    }
+    else if(income == 'd'){
+      digitalWrite(inA,LOW);
+      digitalWrite(inB,HIGH);
+      analogWrite(enpin,0);
+
+      digitalWrite(inA2,HIGH);
+      digitalWrite(inB2,LOW);
+      analogWrite(enpin2,0);
+    }
+    else if(income == 'c'){
+      digitalWrite(inA,LOW);
+      digitalWrite(inB,HIGH);
+      analogWrite(enpin,120);
+
+      digitalWrite(inA2,HIGH);
+      digitalWrite(inB2,LOW);
+      analogWrite(enpin2,0);
+    }
+  }
+
+}
